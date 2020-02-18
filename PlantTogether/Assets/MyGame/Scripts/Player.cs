@@ -6,12 +6,15 @@ public class Player : MonoBehaviour
 {
 
 	[Header("Variaveis")]
-	public float speed = 100; 
+	public float speed = 100;
+	public SpriteRenderer slot;
 
 	Rigidbody2D rb2D;
 	SpriteRenderer sprRenderer;
 	Animator anim;
 	Vector2 dir = Vector2.zero;
+
+	Vector3 scaleChange = Vector3.zero;
 
 	// Start is called before the first frame update
 	void Start() {
@@ -23,16 +26,28 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update() {
 
+		Movement();
+
+	}
+
+
+	void FixedUpdate() {
+		rb2D.velocity = dir * speed * Time.fixedDeltaTime;
+	}
+
+	public void Movement() {
 		dir = Vector2.zero;
 
 		if (Input.GetKey(KeyCode.RightArrow)) {
 			dir.x += 1;
-			sprRenderer.flipX = false;
+			scaleChange = new Vector3(1, 1, 1);
+			transform.localScale = scaleChange;
 			anim.Play("Walk");
 		}
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			dir.x -= 1;
-			sprRenderer.flipX = true;
+			scaleChange = new Vector3(-1, 1, 1);
+			transform.localScale = scaleChange;
 			anim.Play("Walk");
 		}
 
@@ -48,9 +63,5 @@ public class Player : MonoBehaviour
 		if (dir == Vector2.zero) {
 			anim.Play("Idle");
 		}
-	}
-
-	void FixedUpdate() {
-		rb2D.velocity = dir * speed * Time.fixedDeltaTime;
 	}
 }
