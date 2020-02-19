@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fork : DetectObject
+public class Fork : InteractObject
 {
-
-
-	public override void DoAction(GameObject refPlayer) {
-		refPlayer.GetComponent<Player>().slot.sprite = sprObj;
-		Destroy(transform.parent.gameObject);
+	public override void DoAction() {
+		throw new System.NotImplementedException();
 	}
-
 }

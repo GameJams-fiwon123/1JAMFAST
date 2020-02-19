@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
 	[Header("Variaveis")]
 	public float speed = 100;
-	public SpriteRenderer slot;
+	public Transform slot;
 
 	Rigidbody2D rb2D;
 	SpriteRenderer sprRenderer;
@@ -15,6 +15,16 @@ public class Player : MonoBehaviour
 	Vector2 dir = Vector2.zero;
 
 	Vector3 scaleChange = Vector3.zero;
+
+	public static Player instance;
+
+	private void Awake() {
+		if (FindObjectsOfType<Player>().Length > 1) {
+			Destroy(gameObject); ;
+		} else {
+			instance = this;
+		}
+	}
 
 	// Start is called before the first frame update
 	void Start() {
@@ -26,16 +36,23 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void Update() {
 
+		TakeOff();
 		Movement();
 
 	}
 
+	private void TakeOff() {
+		if (Input.GetKey(KeyCode.X) && slot.childCount == 1) {
+			slot.GetChild(0).gameObject.GetComponent<InteractObject>().ReturnSortingOrder();
+			GroundManager.instance.SetObject(slot.GetChild(0).gameObject);
+		}
+	}
 
 	void FixedUpdate() {
 		rb2D.velocity = dir * speed * Time.fixedDeltaTime;
 	}
 
-	public void Movement() {
+	private void Movement() {
 		dir = Vector2.zero;
 
 		if (Input.GetKey(KeyCode.RightArrow)) {
