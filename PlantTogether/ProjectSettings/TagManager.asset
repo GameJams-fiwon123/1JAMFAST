@@ -9,6 +9,9 @@ TagManager:
   - Seed
   - Bottle
   - Fountain
+  - Shovel
+  - Vase
+  - Market
   layers:
   - Default
   - TransparentFX

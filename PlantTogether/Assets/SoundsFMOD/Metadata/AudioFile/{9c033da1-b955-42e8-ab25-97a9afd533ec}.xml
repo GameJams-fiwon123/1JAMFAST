@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{9c033da1-b955-42e8-ab25-97a9afd533ec}">
+        <property name="assetPath">
+            <value>Músicas/Gameplay (Flor 120).ogg</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>34</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{c442f398-b0e3-47a3-9325-97e76559fac8}</destination>
+        </relationship>
+    </object>
+</objects>

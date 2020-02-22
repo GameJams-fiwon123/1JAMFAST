@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 
 	[Header("Variaveis")]
-	public float speed = 100;
+	public float speed = 200;
 	public Transform slot;
 
 	Rigidbody2D rb2D;
@@ -35,9 +35,10 @@ public class Player : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-
-		TakeOff();
-		Movement();
+		if (!GameManager.instance.isFinish) {
+			TakeOff();
+			Movement();
+		}
 
 	}
 
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour
 	}
 
 	void FixedUpdate() {
-		rb2D.velocity = dir * speed * Time.fixedDeltaTime;
+		rb2D.velocity = dir.normalized * speed * Time.fixedDeltaTime;
 	}
 
 	private void Movement() {
@@ -59,26 +60,31 @@ public class Player : MonoBehaviour
 			dir.x += 1;
 			scaleChange = new Vector3(1, 1, 1);
 			transform.localScale = scaleChange;
-			anim.Play("Walk");
+			anim.SetBool("Idle", false);
+			anim.SetBool("Walk", true);
 		}
 		if (Input.GetKey(KeyCode.LeftArrow)) {
 			dir.x -= 1;
 			scaleChange = new Vector3(-1, 1, 1);
 			transform.localScale = scaleChange;
-			anim.Play("Walk");
+			anim.SetBool("Idle", false);
+			anim.SetBool("Walk", true);
 		}
 
 		if (Input.GetKey(KeyCode.UpArrow)) {
 			dir.y += 1;
-			anim.Play("Walk");
+			anim.SetBool("Idle", false);
+			anim.SetBool("Walk", true);
 		}
 		if (Input.GetKey(KeyCode.DownArrow)) {
 			dir.y -= 1;
-			anim.Play("Walk");
+			anim.SetBool("Idle", false);
+			anim.SetBool("Walk", true);
 		}
 
 		if (dir == Vector2.zero) {
-			anim.Play("Idle");
+			anim.SetBool("Walk", false);
+			anim.SetBool("Idle", true);
 		}
 	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{4499765f-d177-4bd6-97e1-4957dbb768f6}">
+        <property name="name">
+            <value>Balde</value>
+        </property>
+        <relationship name="folder">
+            <destination>{048919a5-d1bb-4a8b-b704-7bdd75a38932}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{973f22d5-8559-4618-9927-a590165e28fe}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{973f22d5-8559-4618-9927-a590165e28fe}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+        <property name="seekSpeed">
+            <value>1</value>
+        </property>
+    </object>
+</objects>

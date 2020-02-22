@@ -21,6 +21,18 @@ public class GroundManager : MonoBehaviour
 
 	public void SetObject(GameObject objSlot) {
 		if (!refGround.obj) {
+
+			if (objSlot.tag == "Shovel") {
+				GameManager.instance.musicEvent.SetParameter("Pá", 0);
+			} else if (objSlot.tag == "Seed") {
+				GameManager.instance.musicEvent.SetParameter("Semente", 0);
+			} else if (objSlot.tag == "Bottle") {
+				GameManager.instance.musicEvent.SetParameter("Balde", 0);
+			} else if (objSlot.tag == "Fork") {
+				GameManager.instance.musicEvent.SetParameter("Rastelo", 0);
+			}
+
+			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Soltar Item");
 			objSlot.transform.parent = transform.parent;
 			objSlot.transform.position = refGround.transform.position;
 			refGround.obj = objSlot.GetComponent<InteractObject>();
@@ -44,20 +56,38 @@ public class GroundManager : MonoBehaviour
 	}
 
 	public void Update() {
-		if (Input.GetKeyDown(KeyCode.Z) && refGround && refGround.obj) {
-			ProcessObjectInGround();
-		} else if (Input.GetKeyDown(KeyCode.Z) && refGround && Player.instance.slot.childCount == 1) {
-			ProcessObjectInSlot();
+		if (!GameManager.instance.isFinish) {
+			if (Input.GetKeyDown(KeyCode.Z) && refGround && refGround.obj) {
+				ProcessObjectInGround();
+			} else if (Input.GetKeyDown(KeyCode.Z) && refGround && Player.instance.slot.childCount == 1) {
+				ProcessObjectInSlot();
+			}
 		}
 	}
 
 	private void ProcessObjectInGround() {
 		if (refGround.obj.tag == "SeedBox") {
 			refGround.obj.DoAction();
-		} else if  (refGround.obj.tag == "Fountain") {
+		} else if (refGround.obj.tag == "Fountain") {
+			refGround.obj.DoAction();
+		} else if (refGround.obj.tag == "Vase" && Player.instance.slot.childCount == 1 && !refGround.obj.GetComponent<Vase>().HasFlower()) {
+			refGround.obj.DoAction();
+		} else if (refGround.obj.tag == "Market") {
 			refGround.obj.DoAction();
 		} else if (Player.instance.slot.childCount == 0) {
-			refGround.obj.transform.parent = Player.instance.slot;
+			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Pegar Item");
+
+			if (refGround.obj.tag == "Shovel") {
+				GameManager.instance.musicEvent.SetParameter("Pá", 1);
+			} else if (refGround.obj.tag == "Seed") {
+				GameManager.instance.musicEvent.SetParameter("Semente", 1);
+			} else if (refGround.obj.tag == "Bottle") {
+				GameManager.instance.musicEvent.SetParameter("Balde", 1);
+			} else if (refGround.obj.tag == "Fork") {
+				GameManager.instance.musicEvent.SetParameter("Rastelo", 1);
+			}
+
+				refGround.obj.transform.parent = Player.instance.slot;
 			refGround.obj.transform.position = Player.instance.slot.position;
 			refGround.obj.GetComponent<SpriteRenderer>().sortingOrder = 2;
 			refGround.obj = null;

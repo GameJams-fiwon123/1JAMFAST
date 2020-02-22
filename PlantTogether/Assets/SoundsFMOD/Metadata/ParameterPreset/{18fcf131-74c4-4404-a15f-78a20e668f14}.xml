@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="ParameterPreset" id="{18fcf131-74c4-4404-a15f-78a20e668f14}">
+        <property name="name">
+            <value>Rastelo</value>
+        </property>
+        <relationship name="folder">
+            <destination>{048919a5-d1bb-4a8b-b704-7bdd75a38932}</destination>
+        </relationship>
+        <relationship name="parameter">
+            <destination>{684d5e93-e790-4d8e-8422-21dfcb050a11}</destination>
+        </relationship>
+    </object>
+    <object class="GameParameter" id="{684d5e93-e790-4d8e-8422-21dfcb050a11}">
+        <property name="initialValue">
+            <value>0</value>
+        </property>
+        <property name="seekSpeed">
+            <value>0.99999994039535522</value>
+        </property>
+    </object>
+</objects>
