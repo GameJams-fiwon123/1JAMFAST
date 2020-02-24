@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class Lobby : MonoBehaviour
 {
@@ -11,17 +12,25 @@ public class Lobby : MonoBehaviour
 	public GameObject paineLobby;
 
 	public TextMeshProUGUI lobbyAguardar;
-	public TextMeshProUGUI lobbyTimeStart;
+	public Text lobbyTimeStart;
 
-	public string lobbyTImeStartText = "Start Game in {}...";
+	public TMP_InputField playerInputField;
+	public string playerName;
+
+	public TextMeshProUGUI playerStatusText;
+
+	// public string lobbyTImeStartText = "Start Game in {0}...";
+
+	private void Awake() {
+		playerName = "Player" + Random.Range(1000, 10000);
+		playerInputField.text = playerName;
+	}
 
 	private void Start() {
 		lobbyTimeStart.gameObject.SetActive(false);
 		PainelLoginActive();
-	}
 
-	public void LoadGame() {
-		SceneManager.LoadScene(1);
+		playerStatusText.gameObject.SetActive(false);
 	}
 
 	public void PainelLobbyActive() {

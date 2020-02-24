@@ -1,13 +1,36 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class NetworkController : MonoBehaviourPunCallbacks
 {
 
+	public byte playerRoomMax = 2;
+
 	public Lobby lobbyScript;
+
+	private void Start() {
+		PhotonNetwork.AutomaticallySyncScene = true;
+	}
+
+	public override void OnEnable() {
+		base.OnEnable();
+
+		CountdownTimer.OnCountdownTimerHasExpired += OnCountDownTimeIsExpired;
+	}
+
+	public override void OnDisable() {
+		CountdownTimer.OnCountdownTimerHasExpired -= OnCountDownTimeIsExpired;
+	}
+
+	void OnCountDownTimeIsExpired() {
+
+		// Chamar a função a ser executada
+		StartGame();
+	}
 
 	public override void OnConnected() {
 		Debug.Log("OnConnected");
@@ -17,6 +40,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 		Debug.Log("OnConnectedToMaster");
 
 		lobbyScript.PainelLobbyActive();
+
+		PhotonNetwork.JoinLobby();
 	}
 
 	public override void OnDisconnected(DisconnectCause cause) {
@@ -25,11 +50,78 @@ public class NetworkController : MonoBehaviourPunCallbacks
 		lobbyScript.PainelLoginActive();
 	}
 
+	public override void OnJoinedLobby() {
+		Debug.Log("OnJoinedLobby");
+
+		PhotonNetwork.JoinRandomRoom();
+	}
+
+	public override void OnJoinRandomFailed(short returnCode, string message) {
+
+		Debug.Log("OnJoinRandomFailed");
+
+		string roomName = "Room" + Random.Range(1000, 10000);
+
+		RoomOptions roomOption = new RoomOptions() {
+
+			IsOpen = true,
+			IsVisible = true,
+			MaxPlayers = playerRoomMax
+
+		};
+
+		PhotonNetwork.CreateRoom(roomName, roomOption, TypedLobby.Default);
+	}
+
+	public override void OnJoinedRoom() {
+		Debug.Log("OnJoinedRoom");
+	}
+
+	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer) {
+
+		Debug.Log("OnPlayerEnteredRoom");
+
+		if (PhotonNetwork.CurrentRoom.PlayerCount == playerRoomMax) {
+
+			foreach (var item in PhotonNetwork.PlayerList ) {
+				if (item.IsMasterClient) {
+					//StartGame();
+
+					Hashtable props = new Hashtable() {
+						{ CountdownTimer.CountdownStartTime, (float) PhotonNetwork.Time }
+					};
+
+					PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+				}
+			}
+
+		}
+
+	}
+
+	public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
+
+		if (propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime)) {
+			lobbyScript.lobbyTimeStart.gameObject.SetActive(true);
+		}
+
+	}
+
+	void StartGame() {
+		PhotonNetwork.LoadLevel(1);
+	}
+
 	public void BotaoCancelar() {
 		PhotonNetwork.Disconnect();
+		lobbyScript.playerStatusText.gameObject.SetActive(false);
 	}
 
 	public void BotaoLogin() {
+
+		PhotonNetwork.NickName = lobbyScript.playerInputField.text;
+
+		lobbyScript.playerStatusText.gameObject.SetActive(true);
+
 		PhotonNetwork.ConnectUsingSettings();
 	}
 }
