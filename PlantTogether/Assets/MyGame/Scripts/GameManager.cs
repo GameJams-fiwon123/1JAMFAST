@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
 	public GameObject vasePrefab;
 	public Ground[] groundsVase;
 
+	public GameObject myPlayer;
+	public Transform[] spawnPlayer;
+
 	private void Awake() {
 		if (FindObjectsOfType<GameManager>().Length > 1) {
 			Destroy(gameObject);
@@ -39,6 +43,10 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start() {
 		textFlowers.text = currentFlowers + "/" + totalFlowers.ToString();
+
+		int i = UnityEngine.Random.Range(0, spawnPlayer.Length);
+
+		PhotonNetwork.Instantiate(myPlayer.name, spawnPlayer[i].position, spawnPlayer[i].rotation, 0);
 	}
 
 	// Update is called once per frame

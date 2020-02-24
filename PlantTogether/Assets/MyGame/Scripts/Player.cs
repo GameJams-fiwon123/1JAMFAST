@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
 
 	Vector3 scaleChange = Vector3.zero;
 
+	PhotonView photonView;
+
 	public static Player instance;
 
 	private void Awake() {
@@ -31,10 +34,16 @@ public class Player : MonoBehaviour
 		rb2D = GetComponent<Rigidbody2D>();
 		sprRenderer = GetComponent<SpriteRenderer>();
 		anim = GetComponent<Animator>();
+		photonView = GetComponent<PhotonView>();
 	}
 
 	// Update is called once per frame
 	void Update() {
+
+		if (!photonView.IsMine) {
+			return;
+		}
+
 		if (!GameManager.instance.isFinish) {
 			TakeOff();
 			Movement();

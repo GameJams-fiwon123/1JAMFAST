@@ -96,7 +96,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
 			}
 
 		}
-
+		 
 	}
 
 	public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
