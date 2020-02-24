@@ -14,7 +14,7 @@ public class Shovel : InteractObject
 	}
 
 	public override void DoAction() {
-		if (sprRenderer.sprite == shovel) {
+		if (sprRenderer.sprite == shovel && sprRenderer.sprite != flower) {
 			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Colhendo");
 			sprRenderer.sprite = flower;
 		} else {
