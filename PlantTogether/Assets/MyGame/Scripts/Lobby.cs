@@ -19,7 +19,7 @@ public class Lobby : MonoBehaviour
 
 	public TextMeshProUGUI playerStatusText;
 
-	// public string lobbyTImeStartText = "Start Game in {0}...";
+	public GameObject buttonCancel;
 
 	private void Awake() {
 		playerName = "Player" + Random.Range(1000, 10000);

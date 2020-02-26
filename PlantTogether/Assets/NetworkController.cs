@@ -47,7 +47,9 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	public override void OnDisconnected(DisconnectCause cause) {
 		Debug.Log("OnDisconnected: " + cause.ToString());
 
-		lobbyScript.PainelLoginActive();
+		if (lobbyScript) {
+			lobbyScript.PainelLoginActive();
+		}
 	}
 
 	public override void OnJoinedLobby() {
@@ -92,6 +94,11 @@ public class NetworkController : MonoBehaviourPunCallbacks
 					};
 
 					PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+
+					PhotonNetwork.CurrentRoom.IsOpen = false;
+					PhotonNetwork.CurrentRoom.IsVisible = false;
+
+					return;
 				}
 			}
 
@@ -102,6 +109,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
 
 		if (propertiesThatChanged.ContainsKey(CountdownTimer.CountdownStartTime)) {
+			lobbyScript.lobbyAguardar.gameObject.SetActive(false);
+			lobbyScript.buttonCancel.SetActive(false);
 			lobbyScript.lobbyTimeStart.gameObject.SetActive(true);
 		}
 
@@ -112,11 +121,18 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	}
 
 	public void BotaoCancelar() {
+
+		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Click");
+
 		PhotonNetwork.Disconnect();
 		lobbyScript.playerStatusText.gameObject.SetActive(false);
+		lobbyScript.lobbyAguardar.gameObject.SetActive(true);
+		lobbyScript.buttonCancel.SetActive(true);
 	}
 
 	public void BotaoLogin() {
+
+		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Click");
 
 		PhotonNetwork.NickName = lobbyScript.playerInputField.text;
 

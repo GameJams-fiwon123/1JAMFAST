@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{0a36b700-93b8-49b2-bdba-eea386ef6c08}">
+		<property name="name">
+			<value>Semente</value>
+		</property>
+		<relationship name="folder">
+			<destination>{048919a5-d1bb-4a8b-b704-7bdd75a38932}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{9febacf1-b048-4565-a6bd-4674a621d7e3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{9febacf1-b048-4565-a6bd-4674a621d7e3}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

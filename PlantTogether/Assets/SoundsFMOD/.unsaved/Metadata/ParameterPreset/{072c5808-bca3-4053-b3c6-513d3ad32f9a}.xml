@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{072c5808-bca3-4053-b3c6-513d3ad32f9a}">
+		<property name="name">
+			<value>Flor</value>
+		</property>
+		<relationship name="folder">
+			<destination>{048919a5-d1bb-4a8b-b704-7bdd75a38932}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e8854348-77e9-4b8b-a13e-e3626904fd68}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e8854348-77e9-4b8b-a13e-e3626904fd68}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

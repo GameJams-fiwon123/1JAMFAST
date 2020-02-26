@@ -1,5 +1,6 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +30,24 @@ public class Player : MonoBehaviour
 			return;
 		}
 
+		//Iniciando CountDown
+		if (photonView.Owner.IsMasterClient) {
+			foreach (var item in PhotonNetwork.PlayerList) {
+				if (item.IsMasterClient) {
+
+					Hashtable props = new Hashtable() {
+						{ "endgame", (float) PhotonNetwork.Time }
+					};
+
+					PhotonNetwork.CurrentRoom.SetCustomProperties(props);
+
+
+					return;
+				}
+
+			}
+		}
+
 		if (FindObjectsOfType<Player>().Length > 1) {
 			Destroy(gameObject); ;
 		} else {
@@ -53,8 +72,15 @@ public class Player : MonoBehaviour
 		if (!GameManager.instance.isFinish) {
 			TakeOff();
 			Movement();
+			VolumePanel();
 		}
 
+	}
+
+	void VolumePanel() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			GameManager.instance.panelVolume.SetActive(!GameManager.instance.panelVolume.activeSelf);
+		}
 	}
 
 	private void TakeOff() {

@@ -1,17 +1,22 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
 
 	public static GameManager instance;
 
 	public TextMeshProUGUI textResult;
 	public GameObject panelResult;
+
+	public GameObject panelVolume;
 
 	public TextMeshProUGUI textTimer;
 	public TextMeshProUGUI textFlowers;
@@ -21,10 +26,11 @@ public class GameManager : MonoBehaviour
 	public int totalFlowers = 50;
 	public int currentFlowers = 0;
 
-	public float sec = 0f;
-	public float min = 3f;
+	private float startTime;
 
-	public bool isFinish = false;
+	public float Countdown = 180;
+
+	public bool isFinish = true;
 
 	public GameObject vasePrefab;
 	public Ground[] groundsVase;
@@ -33,6 +39,10 @@ public class GameManager : MonoBehaviour
 	public Transform[] spawnPlayer;
 
 	private int vaseIndex = 1;
+
+	private int totalPlayers;
+
+	private FMOD.Studio.EventInstance eventFmod;
 
 	private void Awake() {
 		if (FindObjectsOfType<GameManager>().Length > 1) {
@@ -44,9 +54,12 @@ public class GameManager : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start() {
-		textFlowers.text = currentFlowers + "/" + totalFlowers.ToString();
+		totalPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
 
 		int i = UnityEngine.Random.Range(0, spawnPlayer.Length);
+		totalFlowers = 5 * totalPlayers;
+
+		textFlowers.text = currentFlowers + "/" + totalFlowers.ToString();
 
 		PhotonNetwork.Instantiate(myPlayer.name, spawnPlayer[i].position, spawnPlayer[i].rotation, 0);
 	}
@@ -54,37 +67,66 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update() {
 		if (!isFinish) {
-			sec -= Time.deltaTime;
 
-			if (sec <= 0f && min > 0f) {
-				sec = 60f;
-				min -= 1f;
-			} else if (min == 0f && sec <= 0f) {
+			float timer = (float)PhotonNetwork.Time - startTime;
+			float countdown = Countdown - timer;
+
+			string min = ((int)countdown / 60).ToString();
+			string sec = (countdown % 60).ToString("00");
+
+			if (sec == "60") {
+				return;
+			}
+
+			if (textTimer.Equals("0:00")) {
 				// TODO END
-				if (totalFlowers == 0) {
-					FMODUnity.RuntimeManager.PlayOneShot("event:/Músicas/Vitória");
-					Debug.Log("You Win!");
-					textResult.text = "You Win!";
-				} else {
-					FMODUnity.RuntimeManager.PlayOneShot("event:/Músicas/Derrota");
-					Debug.Log("You Lose!");
-					textResult.text = "You Lose!";
-				}
-				musicEvent.Stop();
-				isFinish = true;
-				panelResult.SetActive(true);
+				GameOver();
 			}
 
-			if (sec < 10) {
-				textTimer.text = min + ":0" + Math.Truncate(sec);
-			} else {
-				textTimer.text = min + ":" + Math.Truncate(sec);
-			}
+			textTimer.text = min + ":" + sec;
 
-			if (min == 0) {
+			if (timer >= 120) {
 				musicEvent.SetParameter("tempo", 1);
 			}
+
+			CheckPlayers();
 		}
+	}
+
+	private void CheckPlayers() {
+		if (PhotonNetwork.PlayerList.Length < totalPlayers) {
+			GameOver();
+		}
+	}
+
+	private void GameOver() {
+		musicEvent.Stop();
+
+		if (totalFlowers == 0) {
+			eventFmod = FMODUnity.RuntimeManager.CreateInstance("event:/Músicas/Vitória");
+			eventFmod.start();
+			Debug.Log("You Win!");
+			textResult.text = "You Win!";
+		} else {
+			eventFmod = FMODUnity.RuntimeManager.CreateInstance("event:/Músicas/Derrota");
+			Debug.Log("You Lose!");
+			eventFmod.start();
+			textResult.text = "You Lose!";
+		}
+		isFinish = true;
+		panelVolume.SetActive(false);
+		panelResult.SetActive(true);
+	}
+
+	public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged) {
+
+		object startTimeProps;
+
+		if (propertiesThatChanged.TryGetValue("endgame", out startTimeProps)) {
+			isFinish = false;
+			startTime = (float)startTimeProps;
+		}
+
 	}
 
 	public void SendFlower(){
@@ -102,5 +144,23 @@ public class GameManager : MonoBehaviour
 				break;
 			}
 		}
+	}
+
+	public void ExitRoom() {
+		PhotonNetwork.LeaveRoom();
+	}
+
+	public void ExitSoundPanel() {
+		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Click");
+		panelVolume.SetActive(false);
+	}
+
+
+	public override void OnDisconnected(DisconnectCause cause) {
+		SceneManager.LoadScene(0);
+	}
+
+	public override void OnLeftRoom() {
+		PhotonNetwork.Disconnect();
 	}
 }

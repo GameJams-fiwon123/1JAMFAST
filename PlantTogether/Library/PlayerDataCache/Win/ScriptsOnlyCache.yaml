@@ -26,6 +26,8 @@ ScriptsOnlyBuild:
     - Seed
     - SeedBox
     - Shovel
+    - SlideSound
+    - SoundManager
     - Vase
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
@@ -153,45 +155,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12192}
     - Class: 114
-      Script: {instanceID: 12352}
+      Script: {instanceID: 12342}
     - Class: 114
-      Script: {instanceID: 12362}
+      Script: {instanceID: 12354}
     - Class: 114
-      Script: {instanceID: 12496}
+      Script: {instanceID: 12364}
     - Class: 114
-      Script: {instanceID: 12552}
+      Script: {instanceID: 12498}
     - Class: 114
-      Script: {instanceID: 12574}
+      Script: {instanceID: 12554}
     - Class: 114
-      Script: {instanceID: 12698}
+      Script: {instanceID: 12576}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12700}
     - Class: 114
-      Script: {instanceID: 12830}
+      Script: {instanceID: 12724}
     - Class: 114
-      Script: {instanceID: 12836}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13000}
+      Script: {instanceID: 12838}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 13002}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13006}
     - Class: 114
-      Script: {instanceID: 13238}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13288}
+      Script: {instanceID: 13240}
     - Class: 114
-      Script: {instanceID: 13362}
+      Script: {instanceID: 13290}
     - Class: 114
-      Script: {instanceID: 13532}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13590}
+      Script: {instanceID: 13534}
     - Class: 114
-      Script: {instanceID: 13776}
+      Script: {instanceID: 13592}
     - Class: 114
-      Script: {instanceID: 13872}
+      Script: {instanceID: 13778}
     - Class: 114
-      Script: {instanceID: 74278}
+      Script: {instanceID: 13874}
+    - Class: 114
+      Script: {instanceID: 13916}
+    - Class: 114
+      Script: {instanceID: 21382}
+    - Class: 114
+      Script: {instanceID: 37906}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -292,55 +300,59 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12226}
     - Class: 114
-      Script: {instanceID: 12468}
+      Script: {instanceID: 12470}
     - Class: 114
-      Script: {instanceID: 12496}
+      Script: {instanceID: 12498}
     - Class: 114
-      Script: {instanceID: 12552}
+      Script: {instanceID: 12554}
     - Class: 114
-      Script: {instanceID: 12698}
+      Script: {instanceID: 12700}
     - Class: 114
-      Script: {instanceID: 12722}
+      Script: {instanceID: 12724}
     - Class: 114
-      Script: {instanceID: 12762}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 12848}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 12942}
+      Script: {instanceID: 12944}
     - Class: 114
-      Script: {instanceID: 12954}
+      Script: {instanceID: 12956}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 13006}
     - Class: 114
-      Script: {instanceID: 13020}
+      Script: {instanceID: 13022}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13196}
+      Script: {instanceID: 13198}
     - Class: 114
-      Script: {instanceID: 13214}
+      Script: {instanceID: 13216}
     - Class: 114
-      Script: {instanceID: 13222}
+      Script: {instanceID: 13224}
     - Class: 114
-      Script: {instanceID: 13288}
+      Script: {instanceID: 13290}
     - Class: 114
-      Script: {instanceID: 13362}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13496}
+      Script: {instanceID: 13498}
     - Class: 114
-      Script: {instanceID: 13584}
+      Script: {instanceID: 13586}
     - Class: 114
-      Script: {instanceID: 13770}
+      Script: {instanceID: 13772}
     - Class: 114
-      Script: {instanceID: 13776}
+      Script: {instanceID: 13778}
     - Class: 114
-      Script: {instanceID: 13872}
+      Script: {instanceID: 13874}
     - Class: 114
-      Script: {instanceID: 13906}
+      Script: {instanceID: 13908}
     - Class: 114
-      Script: {instanceID: 13914}
+      Script: {instanceID: 13916}
     - Class: 114
-      Script: {instanceID: 13938}
+      Script: {instanceID: 13940}
+    - Class: 114
+      Script: {instanceID: 21382}
+    - Class: 114
+      Script: {instanceID: 37906}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -970,6 +982,12 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsOpenToggle
   - hash:
       serializedVersion: 2
+      Hash: c25886aab40f0eeca014a20dd455fcbf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemsManager
+  - hash:
+      serializedVersion: 2
       Hash: a4927e9c851ea0dcb3c1f8d4950a0d01
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -1570,7 +1588,7 @@ ScriptsOnlyBuild:
     className: PhotonTransformViewClassic
   - hash:
       serializedVersion: 2
-      Hash: 4fae750e62f27047e15849fbe0c460c7
+      Hash: 88e86492f1bf417590c6e5c8ace5ab95
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Lobby
@@ -1594,7 +1612,7 @@ ScriptsOnlyBuild:
     className: OnStartDelete
   - hash:
       serializedVersion: 2
-      Hash: 21f2e8dded99f3e27ce628f9e849a14c
+      Hash: 36a9c9598c14c19d1e8ee799576eb0a3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1894,10 +1912,16 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: c25886aab40f0eeca014a20dd455fcbf
+      Hash: ac8328ca5fb75bcd091e16bbbc56e225
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: ItemsManager
+    className: SoundManager
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SlideSound
   platform: 5
   scenePathNames:
   - Assets/MyGame/Scenes/Lobby.unity

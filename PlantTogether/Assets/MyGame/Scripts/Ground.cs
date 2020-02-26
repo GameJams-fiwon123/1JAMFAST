@@ -140,9 +140,13 @@ public class Ground : InteractObject
 	}
 
 	public override void ExitPlayer(GameObject refPlayer) {
-		if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
-			return;
+
+		if (refPlayer) {
+			if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
+				return;
+			}
 		}
+		
 
 		if (GroundManager.instance.refGround == this.gameObject) {
 			GroundManager.instance.DropGround();
