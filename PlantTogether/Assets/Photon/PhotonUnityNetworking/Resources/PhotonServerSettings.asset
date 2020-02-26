@@ -34,5 +34,18 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - ProcessObjectInGroundNetwork
+  - TakeObjectNetwork
+  - GrowthGround
+  - TakeNetwork
+  - DoActionObjectNetwork
+  - SetObjectNetwork
+  - MovementNetwork
+  - SyncAnimation
+  - UseSeedNetwork
+  - SpendWaterNetwork
+  - WaterGround
+  - DigPlant
+  - GetPlantNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 1

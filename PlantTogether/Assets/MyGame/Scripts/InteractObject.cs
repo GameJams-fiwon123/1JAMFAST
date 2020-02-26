@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class InteractObject : MonoBehaviour
 {
+	public Ground ground;
 	GameObject refPlayer;
 	bool isPlayerEnter = false ;
 
@@ -35,7 +36,7 @@ public abstract class InteractObject : MonoBehaviour
 		}
 	}
 
-	public abstract void DoAction();
+	public abstract void DoAction(Player player);
 	public virtual void EnterPlayer(GameObject refPlayer){
 	}
 	public virtual void ExitPlayer(GameObject refPlayer) {

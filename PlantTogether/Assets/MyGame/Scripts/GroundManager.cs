@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Photon.Pun;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class GroundManager : MonoBehaviour
 	public static GroundManager instance;
 
 	private void Start() {
+
 		if (FindObjectsOfType<GroundManager>().Length > 1) {
 			Destroy(this.gameObject);
 		} else {
@@ -22,25 +24,14 @@ public class GroundManager : MonoBehaviour
 	public void SetObject(GameObject objSlot) {
 		if (!refGround.obj) {
 
-			if (objSlot.tag == "Shovel") {
-				GameManager.instance.musicEvent.SetParameter("Pá", 0);
-			} else if (objSlot.tag == "Seed") {
-				GameManager.instance.musicEvent.SetParameter("Semente", 0);
-			} else if (objSlot.tag == "Bottle") {
-				GameManager.instance.musicEvent.SetParameter("Balde", 0);
-			} else if (objSlot.tag == "Fork") {
-				GameManager.instance.musicEvent.SetParameter("Rastelo", 0);
-			}
-
-			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Soltar Item");
-			objSlot.transform.parent = transform.parent;
-			objSlot.transform.position = refGround.transform.position;
-			refGround.obj = objSlot.GetComponent<InteractObject>();
-			objSlot.GetComponent<InteractObject>().ReturnSortingOrder();
+		
+			refGround.SetObject(objSlot.tag, objSlot.name);
+			
 		}
 	}
 
 	public void SetGround(Ground newRefGround) {
+
 		if (refGround)
 			refGround.select.SetActive(false);
 
@@ -50,6 +41,7 @@ public class GroundManager : MonoBehaviour
 	}
 
 	public void DropGround() {
+
 		refGround.select.SetActive(false);
 		refGround = refLastGround;
 		refGround.select.SetActive(true);
@@ -66,35 +58,24 @@ public class GroundManager : MonoBehaviour
 	}
 
 	private void ProcessObjectInGround() {
+		ProcessObjectInGroundNetwork();
+	}
+
+	private void ProcessObjectInGroundNetwork() {
 		if (refGround.obj.tag == "SeedBox") {
-			refGround.obj.DoAction();
+			Player.instance.DoActionObject(refGround.obj.tag, refGround.obj.name);
 		} else if (refGround.obj.tag == "Fountain") {
-			refGround.obj.DoAction();
+			Player.instance.DoActionObject(refGround.obj.tag, refGround.obj.name);
 		} else if (refGround.obj.tag == "Vase" && Player.instance.slot.childCount == 1 && !refGround.obj.GetComponent<Vase>().HasFlower()) {
-			refGround.obj.DoAction();
+			Player.instance.DoActionObject(refGround.obj.tag, refGround.obj.name);
 		} else if (refGround.obj.tag == "Market") {
-			refGround.obj.DoAction();
+			Player.instance.DoActionObject(refGround.obj.tag, refGround.obj.name);
 		} else if (Player.instance.slot.childCount == 0) {
-			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Pegar Item");
-
-			if (refGround.obj.tag == "Shovel") {
-				GameManager.instance.musicEvent.SetParameter("Pá", 1);
-			} else if (refGround.obj.tag == "Seed") {
-				GameManager.instance.musicEvent.SetParameter("Semente", 1);
-			} else if (refGround.obj.tag == "Bottle") {
-				GameManager.instance.musicEvent.SetParameter("Balde", 1);
-			} else if (refGround.obj.tag == "Fork") {
-				GameManager.instance.musicEvent.SetParameter("Rastelo", 1);
-			}
-
-				refGround.obj.transform.parent = Player.instance.slot;
-			refGround.obj.transform.position = Player.instance.slot.position;
-			refGround.obj.GetComponent<SpriteRenderer>().sortingOrder = 2;
-			refGround.obj = null;
+			Player.instance.Take(refGround.obj.tag, refGround.obj.name);
 		}
 	}
 
 	private void ProcessObjectInSlot() {
-			refGround.DoAction();
+			refGround.DoAction(Player.instance);
 	}
 }

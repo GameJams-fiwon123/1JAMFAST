@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 3, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0.96}
+  m_SizeDelta: {x: 5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1300926892899488593
 Canvas:
@@ -135,7 +135,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &7461354359628704819
 MonoBehaviour:
@@ -282,6 +282,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 150
   slot: {fileID: 8678637517805622189}
+  photonView: {fileID: 0}
+  nameCanvas: {fileID: 1531189980373573829}
 --- !u!95 &3229653052666289642
 Animator:
   serializedVersion: 3

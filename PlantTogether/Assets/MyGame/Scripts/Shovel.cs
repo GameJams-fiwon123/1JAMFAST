@@ -13,13 +13,15 @@ public class Shovel : InteractObject
 		sprRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	public override void DoAction() {
-		if (sprRenderer.sprite == shovel && sprRenderer.sprite != flower) {
+	public override void DoAction(Player player) {
+		if (sprRenderer.sprite == shovel) {
 			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Colhendo");
 			sprRenderer.sprite = flower;
-		} else {
-			sprRenderer.sprite = shovel;
-		}
+		} 
+	}
+
+	public void RemoveFlower() {
+		sprRenderer.sprite = shovel;
 	}
 
 	public bool HasFlower() {

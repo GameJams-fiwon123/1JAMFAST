@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class Market : InteractObject
 {
-	public Ground ground;
 
-	public override void DoAction() {
-		if (Player.instance.slot.childCount == 1) {
-			if (Player.instance.slot.GetChild(0).tag == "Vase" && Player.instance.slot.GetChild(0).gameObject.GetComponent<Vase>().HasFlower()) {
+	public override void DoAction(Player player) {
+		if (player.slot.childCount == 1) {
+			if (player.slot.GetChild(0).tag == "Vase" && player.slot.GetChild(0).gameObject.GetComponent<Vase>().HasFlower()) {
 				FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Entrega");
-				Destroy(Player.instance.slot.GetChild(0).gameObject);
+				ItemsManager.instance.interactObjects.Remove(player.slot.GetChild(0).GetComponent<InteractObject>());
+				Destroy(player.slot.GetChild(0).gameObject);
 				GameManager.instance.SendFlower();
 			}
 		}
 	}
 
 	public override void EnterPlayer(GameObject refPlayer) {
+		if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
+			return;
+		}
+
 		GroundManager.instance.SetGround(ground);
 	}
 
 	public override void ExitPlayer(GameObject refPlayer) {
+		if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
+			return;
+		}
+
 		if (GroundManager.instance.refGround == ground) {
 			GroundManager.instance.DropGround();
 		}

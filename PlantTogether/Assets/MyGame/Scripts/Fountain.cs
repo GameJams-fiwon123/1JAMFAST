@@ -5,21 +5,29 @@ using UnityEngine;
 public class Fountain : InteractObject
 {
 
-	public Ground ground;
 
-	public override void DoAction() {
-		if (Player.instance.slot.childCount == 1) {
-			if (Player.instance.slot.GetChild(0).tag == "Bottle") {
-				Player.instance.slot.GetChild(0).gameObject.GetComponent<Bottle>().Fill();
+	public override void DoAction(Player player) {
+		if (player.slot.childCount == 1) {
+			if (player.slot.GetChild(0).tag == "Bottle") {
+				player.slot.GetChild(0).gameObject.GetComponent<Bottle>().Fill();
 			}
 		}
 	}
 
 	public override void EnterPlayer(GameObject refPlayer) {
+		if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
+			return;
+		}
+
 		GroundManager.instance.SetGround(ground);
 	}
 
 	public override void ExitPlayer(GameObject refPlayer) {
+
+		if (!refPlayer.GetComponent<Player>().photonView.IsMine) {
+			return;
+		}
+
 		if (GroundManager.instance.refGround == ground) {
 			GroundManager.instance.DropGround();
 		}

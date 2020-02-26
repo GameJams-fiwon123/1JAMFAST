@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,12 +12,15 @@ public class Bottle : InteractObject
 	int maxWaters = 3;
 	int waters = 0;
 
+	PhotonView photonView;
+
 	private void Start() {
 		fill.fillAmount = waters / maxWaters;
+		photonView = GetComponent<PhotonView>();
 	}
 
 
-	public override void DoAction() {
+	public override void DoAction(Player player) {
 		throw new System.NotImplementedException();
 	}
 
@@ -25,6 +29,11 @@ public class Bottle : InteractObject
 	}
 
 	public void SpendWater() {
+		photonView.RPC("SpendWaterNetwork", RpcTarget.All);
+	}
+
+	[PunRPC]
+	private void SpendWaterNetwork() {
 		if (waters > 0) {
 			waters--;
 			fill.fillAmount = (float)waters / maxWaters;

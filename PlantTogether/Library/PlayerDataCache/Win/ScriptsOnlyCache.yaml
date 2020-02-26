@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - FMODUnity.EditorParamRef
     - FMODUnity.EventCache
     Assembly-CSharp-firstpass.dll:
+    - FMODUnity.RuntimeManager
     - FMODUnity.Settings
     - FMODUnity.StudioEventEmitter
     - FMODUnity.StudioListener
@@ -16,8 +17,10 @@ ScriptsOnlyBuild:
     - GameManager
     - Ground
     - GroundManager
+    - ItemsManager
     - Lobby
     - Market
+    - NameMultiplayer
     - NetworkController
     - Player
     - Seed
@@ -48,7 +51,6 @@ ScriptsOnlyBuild:
     - UnityEngine.U2D.PixelPerfectCamera
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -127,15 +129,19 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 11472}
+      Script: {instanceID: 11470}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11594}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11760}
+      Script: {instanceID: 11592}
+    - Class: 114
+      Script: {instanceID: 11758}
+    - Class: 114
+      Script: {instanceID: 11896}
     - Class: 114
       Script: {instanceID: 11916}
     - Class: 114
@@ -184,6 +190,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13776}
     - Class: 114
       Script: {instanceID: 13872}
+    - Class: 114
+      Script: {instanceID: 74278}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -252,21 +260,23 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11288}
+      Script: {instanceID: 11286}
     - Class: 114
-      Script: {instanceID: 11470}
+      Script: {instanceID: 11468}
     - Class: 114
-      Script: {instanceID: 11496}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11544}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 11594}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11616}
+      Script: {instanceID: 11614}
     - Class: 114
-      Script: {instanceID: 11760}
+      Script: {instanceID: 11758}
     - Class: 114
-      Script: {instanceID: 11890}
+      Script: {instanceID: 11888}
+    - Class: 114
+      Script: {instanceID: 11896}
     - Class: 114
       Script: {instanceID: 11916}
     - Class: 114
@@ -756,6 +766,12 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
+      Hash: a31f478f1fe2cb5097c719d2736d44cb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NameMultiplayer
+  - hash:
+      serializedVersion: 2
       Hash: 4e9333594897a1fb8b136ad2eae996c7
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -780,7 +796,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: a4927e9c851ea0dcb3c1f8d4950a0d01
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Fork
@@ -888,7 +904,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAsset
   - hash:
       serializedVersion: 2
-      Hash: b35b7f516d9827079b92568a7b2a43a7
+      Hash: 26fe92786264fef6c774a68b0e965f70
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shovel
@@ -960,7 +976,7 @@ ScriptsOnlyBuild:
     className: Fountain
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: a4927e9c851ea0dcb3c1f8d4950a0d01
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Seed
@@ -1086,7 +1102,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomPropertiesListedInLobbyProperty
   - hash:
       serializedVersion: 2
-      Hash: af746220c16a53ca648e795a811b0c12
+      Hash: 65dd7df8302bf074c124e238b8d5a568
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Vase
@@ -1392,7 +1408,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomNameProperty
   - hash:
       serializedVersion: 2
-      Hash: b5709c450c7af6f33183fbb048d165b5
+      Hash: 492c8596e9331ef0608c0ee2153b7aeb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -1422,7 +1438,7 @@ ScriptsOnlyBuild:
     className: Asteroid
   - hash:
       serializedVersion: 2
-      Hash: 7365497ebe4b41468147194b519bbcc3
+      Hash: 71708b858b93fe7d034fcd5cf2f227a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Ground
@@ -1602,7 +1618,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 0232fc9fab69173d90b29779d943a3e1
+      Hash: 87238d55bbe1decf0bcf9d883e09dc8d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Bottle
@@ -1876,6 +1892,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: c25886aab40f0eeca014a20dd455fcbf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemsManager
   platform: 5
   scenePathNames:
   - Assets/MyGame/Scenes/Lobby.unity

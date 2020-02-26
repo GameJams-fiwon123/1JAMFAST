@@ -13,14 +13,13 @@ public class Vase : InteractObject{
 		sprRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	public override void DoAction() {
-		if (sprRenderer.sprite == vase && Player.instance.slot.GetChild(0).tag == "Shovel" && Player.instance.slot.GetChild(0).gameObject.GetComponent<Shovel>().HasFlower()) {
+	public override void DoAction(Player player) {
+		if (sprRenderer.sprite == vase && player.slot.GetChild(0).tag == "Shovel" && player.slot.GetChild(0).gameObject.GetComponent<Shovel>().HasFlower()) {
 			FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Soltar Item");
-			Player.instance.slot.GetChild(0).gameObject.GetComponent<Shovel>().DoAction();
+			player.slot.GetChild(0).gameObject.GetComponent<Shovel>().DoAction(player);
+			player.slot.GetChild(0).GetComponent<Shovel>().RemoveFlower();
 			sprRenderer.sprite = flower;
-		} else {
-			sprRenderer.sprite = vase;
-		}
+		} 
 	}
 
 	public bool HasFlower() {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2054280482868805570}
   - component: {fileID: 6189642651052706208}
   - component: {fileID: 2845324378504497849}
+  - component: {fileID: 7338554283468256132}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Bottle
@@ -107,7 +108,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dac97bdd2224b3469cd8b6611636cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 0}
   fill: {fileID: 5686932201793410906}
+--- !u!114 &7338554283468256132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054280482868805571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &3088142666883139985
 GameObject:
   m_ObjectHideFlags: 0

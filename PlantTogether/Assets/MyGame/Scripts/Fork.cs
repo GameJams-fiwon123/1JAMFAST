@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fork : InteractObject
 {
-	public override void DoAction() {
+	public override void DoAction(Player player) {
 		throw new System.NotImplementedException();
 	}
 }

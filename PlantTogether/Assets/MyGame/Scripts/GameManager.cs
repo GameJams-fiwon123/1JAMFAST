@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 	public GameObject myPlayer;
 	public Transform[] spawnPlayer;
 
+	private int vaseIndex = 1;
+
 	private void Awake() {
 		if (FindObjectsOfType<GameManager>().Length > 1) {
 			Destroy(gameObject);
@@ -92,7 +94,11 @@ public class GameManager : MonoBehaviour
 		foreach(Ground obj in groundsVase) {
 			if (obj.obj == null) {
 				GameObject refVase = Instantiate(vasePrefab, obj.transform.position, vasePrefab.transform.rotation, null);
+				refVase.name = "Vase" + vaseIndex;
+				vaseIndex++;
 				obj.obj = refVase.GetComponent<InteractObject>();
+				refVase.GetComponent<InteractObject>().ground = obj;
+				ItemsManager.instance.interactObjects.Add(refVase.GetComponent<InteractObject>());
 				break;
 			}
 		}
