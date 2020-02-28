@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 	// Start is called before the first frame update
 	void Start() {
+
 		totalPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
 
 		int i = UnityEngine.Random.Range(0, spawnPlayer.Length);
@@ -78,12 +79,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 				return;
 			}
 
-			if (textTimer.Equals("0:00")) {
-				// TODO END
+			textTimer.text = min + ":" + sec;
+
+			if (textTimer.text.Equals("0:00")) {
 				GameOver();
 			}
-
-			textTimer.text = min + ":" + sec;
 
 			if (timer >= 120) {
 				musicEvent.SetParameter("tempo", 1);
@@ -102,16 +102,16 @@ public class GameManager : MonoBehaviourPunCallbacks
 	private void GameOver() {
 		musicEvent.Stop();
 
-		if (totalFlowers == 0) {
+		if (currentFlowers >= totalFlowers) {
 			eventFmod = FMODUnity.RuntimeManager.CreateInstance("event:/Músicas/Vitória");
 			eventFmod.start();
-			Debug.Log("You Win!");
-			textResult.text = "You Win!";
+			Debug.Log("Vocês Venceram!");
+			textResult.text = "Vocês Venceram!";
 		} else {
 			eventFmod = FMODUnity.RuntimeManager.CreateInstance("event:/Músicas/Derrota");
-			Debug.Log("You Lose!");
+			Debug.Log("Vocês Perderam!");
 			eventFmod.start();
-			textResult.text = "You Lose!";
+			textResult.text = "Vocês Perderam!";
 		}
 		isFinish = true;
 		panelVolume.SetActive(false);
@@ -155,8 +155,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 		panelVolume.SetActive(false);
 	}
 
-
 	public override void OnDisconnected(DisconnectCause cause) {
+		PhotonNetwork.AutomaticallySyncScene = false;
 		SceneManager.LoadScene(0);
 	}
 

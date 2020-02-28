@@ -53,6 +53,7 @@ ScriptsOnlyBuild:
     - UnityEngine.U2D.PixelPerfectCamera
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -82,8 +83,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -153,53 +156,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12154}
     - Class: 114
-      Script: {instanceID: 12192}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12342}
+      Script: {instanceID: 12194}
     - Class: 114
-      Script: {instanceID: 12354}
+      Script: {instanceID: 12344}
     - Class: 114
-      Script: {instanceID: 12364}
+      Script: {instanceID: 12356}
     - Class: 114
-      Script: {instanceID: 12498}
+      Script: {instanceID: 12366}
     - Class: 114
-      Script: {instanceID: 12554}
+      Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 12576}
+      Script: {instanceID: 12556}
     - Class: 114
-      Script: {instanceID: 12700}
+      Script: {instanceID: 12578}
     - Class: 114
-      Script: {instanceID: 12724}
+      Script: {instanceID: 12626}
     - Class: 114
-      Script: {instanceID: 12832}
+      Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 12838}
+      Script: {instanceID: 12728}
     - Class: 114
-      Script: {instanceID: 13002}
+      Script: {instanceID: 12836}
+    - Class: 114
+      Script: {instanceID: 12842}
     - Class: 114
       Script: {instanceID: 13006}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13240}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13290}
+      Script: {instanceID: 13244}
     - Class: 114
-      Script: {instanceID: 13364}
+      Script: {instanceID: 13294}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 13368}
     - Class: 114
-      Script: {instanceID: 13592}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 13778}
+      Script: {instanceID: 13596}
     - Class: 114
-      Script: {instanceID: 13874}
+      Script: {instanceID: 13782}
     - Class: 114
-      Script: {instanceID: 13916}
+      Script: {instanceID: 13878}
     - Class: 114
-      Script: {instanceID: 21382}
-    - Class: 114
-      Script: {instanceID: 37906}
+      Script: {instanceID: 13920}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -298,61 +301,61 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12226}
+      Script: {instanceID: 12188}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12228}
     - Class: 114
-      Script: {instanceID: 12498}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 12554}
+      Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 12700}
+      Script: {instanceID: 12556}
     - Class: 114
-      Script: {instanceID: 12724}
+      Script: {instanceID: 12626}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12704}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12728}
     - Class: 114
-      Script: {instanceID: 12944}
+      Script: {instanceID: 12768}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 12854}
     - Class: 114
-      Script: {instanceID: 13006}
+      Script: {instanceID: 12948}
     - Class: 114
-      Script: {instanceID: 13022}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 13178}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13198}
+      Script: {instanceID: 13026}
     - Class: 114
-      Script: {instanceID: 13216}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13224}
+      Script: {instanceID: 13202}
     - Class: 114
-      Script: {instanceID: 13290}
+      Script: {instanceID: 13220}
     - Class: 114
-      Script: {instanceID: 13364}
+      Script: {instanceID: 13228}
     - Class: 114
-      Script: {instanceID: 13498}
+      Script: {instanceID: 13294}
     - Class: 114
-      Script: {instanceID: 13586}
+      Script: {instanceID: 13368}
     - Class: 114
-      Script: {instanceID: 13772}
+      Script: {instanceID: 13502}
     - Class: 114
-      Script: {instanceID: 13778}
+      Script: {instanceID: 13590}
     - Class: 114
-      Script: {instanceID: 13874}
+      Script: {instanceID: 13776}
     - Class: 114
-      Script: {instanceID: 13908}
+      Script: {instanceID: 13782}
     - Class: 114
-      Script: {instanceID: 13916}
+      Script: {instanceID: 13878}
     - Class: 114
-      Script: {instanceID: 13940}
+      Script: {instanceID: 13912}
     - Class: 114
-      Script: {instanceID: 21382}
+      Script: {instanceID: 13920}
     - Class: 114
-      Script: {instanceID: 37906}
+      Script: {instanceID: 13944}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -910,6 +913,12 @@ ScriptsOnlyBuild:
     className: AutoSyncSceneToggle
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SlideSound
+  - hash:
+      serializedVersion: 2
       Hash: b8a5e8091ab0b8861d2add371082c5e0
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1166,6 +1175,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine.Tilemaps
     className: PipelineTile
+  - hash:
+      serializedVersion: 2
+      Hash: ac8328ca5fb75bcd091e16bbbc56e225
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoundManager
   - hash:
       serializedVersion: 2
       Hash: ba62abe34655d7e7cd27c0bf1fa1b39d
@@ -1910,18 +1925,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: ac8328ca5fb75bcd091e16bbbc56e225
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SoundManager
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SlideSound
   platform: 5
   scenePathNames:
   - Assets/MyGame/Scenes/Lobby.unity

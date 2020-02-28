@@ -34,8 +34,11 @@ public class Lobby : MonoBehaviour
 	}
 
 	public void PainelLobbyActive() {
-		paineLobby.SetActive(true);
-		painelLogin.SetActive(false);
+		if (paineLobby)
+			paineLobby.SetActive(true);
+
+		if (painelLogin)
+			painelLogin.SetActive(false);
 	}
 
 	public void PainelLoginActive() {

@@ -30,6 +30,12 @@ public class Player : MonoBehaviour
 			return;
 		}
 
+		if (FindObjectsOfType<Player>().Length > 1) {
+			Destroy(gameObject); ;
+		} else {
+			instance = this;
+		}
+
 		//Iniciando CountDown
 		if (photonView.Owner.IsMasterClient) {
 			foreach (var item in PhotonNetwork.PlayerList) {
@@ -46,12 +52,6 @@ public class Player : MonoBehaviour
 				}
 
 			}
-		}
-
-		if (FindObjectsOfType<Player>().Length > 1) {
-			Destroy(gameObject); ;
-		} else {
-			instance = this;
 		}
 	}
 
@@ -190,6 +190,7 @@ public class Player : MonoBehaviour
 	[PunRPC]
 	private void UseSeedNetwork() {
 		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Soltar Item");
+		GameManager.instance.musicEvent.SetParameter("Semente", 0);
 		ItemsManager.instance.interactObjects.Remove(slot.GetChild(0).GetComponent<InteractObject>());
 		Destroy(slot.GetChild(0).gameObject);
 	}

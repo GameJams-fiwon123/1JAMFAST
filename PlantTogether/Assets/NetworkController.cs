@@ -8,6 +8,8 @@ using UnityEngine;
 public class NetworkController : MonoBehaviourPunCallbacks
 {
 
+	int i = 0;
+
 	public byte playerRoomMax = 2;
 
 	public Lobby lobbyScript;
@@ -17,7 +19,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	}
 
 	public override void OnEnable() {
-		base.OnEnable();
 
 		CountdownTimer.OnCountdownTimerHasExpired += OnCountDownTimeIsExpired;
 	}
@@ -38,7 +39,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
 	public override void OnConnectedToMaster() {
 		Debug.Log("OnConnectedToMaster");
-
 		lobbyScript.PainelLobbyActive();
 
 		PhotonNetwork.JoinLobby();
@@ -85,9 +85,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
 		if (PhotonNetwork.CurrentRoom.PlayerCount == playerRoomMax) {
 
-			foreach (var item in PhotonNetwork.PlayerList ) {
+			foreach (var item in PhotonNetwork.PlayerList) {
 				if (item.IsMasterClient) {
-					//StartGame();
 
 					Hashtable props = new Hashtable() {
 						{ CountdownTimer.CountdownStartTime, (float) PhotonNetwork.Time }
@@ -103,7 +102,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
 			}
 
 		}
-		 
+
 	}
 
 	public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
@@ -139,5 +138,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
 		lobbyScript.playerStatusText.gameObject.SetActive(true);
 
 		PhotonNetwork.ConnectUsingSettings();
+
 	}
 }
