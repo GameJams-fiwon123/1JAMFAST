@@ -32,20 +32,17 @@ MonoBehaviour:
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - ProcessObjectInGroundNetwork
-  - TakeObjectNetwork
-  - GrowthGround
-  - TakeNetwork
-  - DoActionObjectNetwork
-  - SetObjectNetwork
-  - MovementNetwork
-  - SyncAnimation
-  - UseSeedNetwork
-  - SpendWaterNetwork
-  - WaterGround
   - DigPlant
+  - DoActionObjectNetwork
+  - Fire
   - GetPlantNetwork
+  - GrowthGround
+  - RespawnSpaceship
+  - SetObjectNetwork
+  - SpendWaterNetwork
+  - SyncAnimation
+  - TakeNetwork
+  - UseSeedNetwork
+  - WaterGround
   DisableAutoOpenWizard: 1
   ShowSettings: 1

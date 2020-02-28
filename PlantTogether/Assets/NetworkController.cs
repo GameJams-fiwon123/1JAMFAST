@@ -4,11 +4,10 @@ using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkController : MonoBehaviourPunCallbacks
 {
-
-	int i = 0;
 
 	public byte playerRoomMax = 2;
 
@@ -130,6 +129,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	}
 
 	public void BotaoLogin() {
+
+		//SceneManager.LoadScene(0);
 
 		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Click");
 

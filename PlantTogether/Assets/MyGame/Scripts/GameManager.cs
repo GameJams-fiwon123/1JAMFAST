@@ -129,11 +129,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 	}
 
-	public void SendFlower(){
+	public void SendFlower() {
 		currentFlowers++;
-		textFlowers.text = currentFlowers+ "/"+totalFlowers.ToString();
+		textFlowers.text = currentFlowers + "/" + totalFlowers.ToString();
 
-		foreach(Ground obj in groundsVase) {
+		foreach (Ground obj in groundsVase) {
 			if (obj.obj == null) {
 				GameObject refVase = Instantiate(vasePrefab, obj.transform.position, vasePrefab.transform.rotation, null);
 				refVase.name = "Vase" + vaseIndex;
@@ -156,7 +156,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 	}
 
 	public override void OnDisconnected(DisconnectCause cause) {
-		PhotonNetwork.AutomaticallySyncScene = false;
 		SceneManager.LoadScene(0);
 	}
 
