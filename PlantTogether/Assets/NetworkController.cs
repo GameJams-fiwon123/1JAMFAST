@@ -2,7 +2,6 @@
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,26 +12,14 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
 	public Lobby lobbyScript;
 
-	private void Start() {
+	void Start() {
 		PhotonNetwork.AutomaticallySyncScene = true;
 	}
 
-	public override void OnEnable() {
-
-		CountdownTimer.OnCountdownTimerHasExpired += OnCountDownTimeIsExpired;
-	}
-
-	public override void OnDisable() {
-		CountdownTimer.OnCountdownTimerHasExpired -= OnCountDownTimeIsExpired;
-	}
-
-	void OnCountDownTimeIsExpired() {
-
-		// Chamar a função a ser executada
-		StartGame();
-	}
 
 	public override void OnConnected() {
+		base.OnConnected();
+
 		Debug.Log("OnConnected");
 	}
 
@@ -40,7 +27,24 @@ public class NetworkController : MonoBehaviourPunCallbacks
 		Debug.Log("OnConnectedToMaster");
 		lobbyScript.PainelLobbyActive();
 
+
 		PhotonNetwork.JoinLobby();
+	}
+
+	public override void OnEnable() {
+		base.OnEnable(); //Don't take this
+		CountdownTimer.OnCountdownTimerHasExpired += OnCountDownTimeIsExpired;
+	}
+
+	public override void OnDisable() {
+		base.OnDisable();
+		CountdownTimer.OnCountdownTimerHasExpired -= OnCountDownTimeIsExpired;
+	}
+
+	void OnCountDownTimeIsExpired() {
+
+		// Chamar a função a ser executada
+		StartGame();
 	}
 
 	public override void OnDisconnected(DisconnectCause cause) {
@@ -129,8 +133,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
 	}
 
 	public void BotaoLogin() {
-
-		//SceneManager.LoadScene(0);
 
 		FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Click");
 

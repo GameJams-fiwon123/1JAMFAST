@@ -2020,6 +2020,11 @@ PrefabInstance:
       propertyPath: Text
       value: 
       objectReference: {fileID: 1042947217}
+    - target: {fileID: 6163546363804811688, guid: fdb0609c924716d42b5c919037f6d8da,
+        type: 3}
+      propertyPath: lobbyScript
+      value: 
+      objectReference: {fileID: 29304121}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdb0609c924716d42b5c919037f6d8da, type: 3}
 --- !u!1 &1042947215
@@ -2278,18 +2283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2d582570882704da39cacfa7e7f57c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1252390493 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5115078322409989761, guid: fdb0609c924716d42b5c919037f6d8da,
-    type: 3}
-  m_PrefabInstance: {fileID: 889005468}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d5cf9beae867524682704d77e3d9815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1281438702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,7 +2365,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252390493}
+      - m_Target: {fileID: 1530160991}
         m_MethodName: BotaoLogin
         m_Mode: 1
         m_Arguments:
@@ -2501,7 +2494,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1252390493}
+      - m_Target: {fileID: 1530160991}
         m_MethodName: BotaoCancelar
         m_Mode: 1
         m_Arguments:
@@ -2548,6 +2541,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510642971}
   m_CullTransparentMesh: 0
+--- !u!114 &1530160991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6163546363804811688, guid: fdb0609c924716d42b5c919037f6d8da,
+    type: 3}
+  m_PrefabInstance: {fileID: 889005468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5cf9beae867524682704d77e3d9815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1679619677
 GameObject:
   m_ObjectHideFlags: 0
