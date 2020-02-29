@@ -58,6 +58,8 @@ public class Ground : InteractObject
 					GameManager.instance.musicEvent.SetParameter("Balde", 0);
 				} else if (item.tag == "Fork") {
 					GameManager.instance.musicEvent.SetParameter("Rastelo", 0);
+				} else if (item.tag == "Vase") {
+					GameManager.instance.musicEvent.SetParameter("Flor", 0);
 				}
 
 				FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Soltar Item");

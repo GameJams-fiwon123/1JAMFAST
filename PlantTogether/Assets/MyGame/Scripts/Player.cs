@@ -73,6 +73,10 @@ public class Player : MonoBehaviour
 			TakeOff();
 			Movement();
 			VolumePanel();
+		} else {
+			//Stop
+			dir = Vector2.zero;
+			photonView.RPC("SyncAnimation", RpcTarget.All, dir);
 		}
 
 	}
@@ -108,9 +112,11 @@ public class Player : MonoBehaviour
 					GameManager.instance.musicEvent.SetParameter("Balde", 1);
 				} else if (item.tag == "Fork") {
 					GameManager.instance.musicEvent.SetParameter("Rastelo", 1);
+				} else if (item.tag == "Vase") {
+					GameManager.instance.musicEvent.SetParameter("Flor", 1);
 				}
 
-				item.transform.parent = slot;
+					item.transform.parent = slot;
 				item.transform.position = slot.position;
 				item.GetComponent<SpriteRenderer>().sortingOrder = 2;
 				item.ground.obj = null;
