@@ -9,6 +9,7 @@ public class Market : InteractObject
 		if (player.slot.childCount == 1) {
 			if (player.slot.GetChild(0).tag == "Vase" && player.slot.GetChild(0).gameObject.GetComponent<Vase>().HasFlower()) {
 				FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Entrega");
+				GameManager.instance.musicEvent.SetParameter("Flor", 0);
 				ItemsManager.instance.interactObjects.Remove(player.slot.GetChild(0).GetComponent<InteractObject>());
 				Destroy(player.slot.GetChild(0).gameObject);
 				GameManager.instance.SendFlower();
